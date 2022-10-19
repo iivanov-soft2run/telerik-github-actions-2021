@@ -17,7 +17,7 @@ jobs:
      - name: Checkout the repository code
        uses: actions/checkout@v2
      - name: Integration 
-       uses: python factorial.py
+       run: python factorial.py
  lint:
   runs-on: ubuntu-latest
   steps: 
