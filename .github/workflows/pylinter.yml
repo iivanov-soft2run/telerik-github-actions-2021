@@ -8,6 +8,16 @@ on:
     - 'factorial.py'
     - 'lint_test.py'
 jobs:
+ integration-tests:
+   runs-on: ubuntu-latest
+   container:
+     image: python:3.9-alpine
+     options: --cpus 1
+   steps:
+     - name: Checkout the repository code
+       uses: actions/checkout@v2
+     - name: Integration 
+       uses: python factorial.py
  lint:
   runs-on: ubuntu-latest
   steps: 
