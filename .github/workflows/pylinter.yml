@@ -1,0 +1,41 @@
+name: pylinter
+
+on: 
+ push: 
+   branches: [ main ]
+   paths:
+    - 'factorial.py'
+    - 'lint_test.py'
+jobs:
+ lint:
+  runs-on: ubuntu-latest
+  steps: 
+    - name: Check OS
+      run : echo "This job is now running on ${{ runner.os }} server hosted by GitHub!"
+    - name: Check branch
+      run : echo "The name of the branch is ${{ github.ref }} in repository ${{ github.repository }}"
+    - name: Check out repository code
+      uses: actions/checkout@v2
+      run: echo "The ${{ github.repository }} has been cloned to the runner."
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+       python-version: 3.9
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pylint
+    - name: Lint with pylint
+      run: |
+        python lint_test.py
+    - name: Build Container
+      run: |
+        echo "Building Docker container ... "
+        sleep 30
+        echo "Docker container built successfully"
+    - name: Deploy
+      run: |
+        echo "Deploying to imaginary Kubernetes..."
+        sleep 30
+        echo "App has been deployed successfully"
+    - run: echo "This job's status is ${{ job.status }}."
