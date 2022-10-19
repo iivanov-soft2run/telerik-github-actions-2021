@@ -4,6 +4,7 @@ on:
  push: 
    branches: [ main ]
    paths:
+    - '.github/workflows/pylinter.yml'
     - 'factorial.py'
     - 'lint_test.py'
 jobs:
